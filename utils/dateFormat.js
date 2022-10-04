@@ -1,16 +1,21 @@
-const addDateSuffix = date => {
+const addDateSuffix = date =>
+{
   let dateStr = date.toString();
 
   // get last char of date string
   const lastChar = dateStr.charAt(dateStr.length - 1);
 
-  if (lastChar === '1' && dateStr !== '11') {
+  if (lastChar === '1' && dateStr !== '11')
+  {
     dateStr = `${dateStr}st`;
-  } else if (lastChar === '2' && dateStr !== '12') {
+  } else if (lastChar === '2' && dateStr !== '12')
+  {
     dateStr = `${dateStr}nd`;
-  } else if (lastChar === '3' && dateStr !== '13') {
+  } else if (lastChar === '3' && dateStr !== '13')
+  {
     dateStr = `${dateStr}rd`;
-  } else {
+  } else
+  {
     dateStr = `${dateStr}th`;
   }
 
@@ -18,14 +23,18 @@ const addDateSuffix = date => {
 };
 
 // function to format a timestamp, accepts the timestamp and an `options` object as optional parameters
-module.exports = (
+module.exports =
+(
   timestamp,
   { monthLength = 'short', dateSuffix = true } = {}
-) => {
+) =>
+{
   let months;
 
-  if (monthLength === 'short') {
-    months = {
+  if (monthLength === 'short')
+  {
+    months =
+    {
       0: 'Jan',
       1: 'Feb',
       2: 'Mar',
@@ -39,8 +48,11 @@ module.exports = (
       10: 'Nov',
       11: 'Dec'
     };
-  } else {
-    months = {
+  }
+  else
+  {
+    months =
+    {
       0: 'January',
       1: 'February',
       2: 'March',
@@ -61,9 +73,12 @@ module.exports = (
 
   let dayOfMonth;
 
-  if (dateSuffix) {
+  if (dateSuffix)
+  {
     dayOfMonth = addDateSuffix(dateObj.getDate());
-  } else {
+  }
+  else
+  {
     dayOfMonth = dateObj.getDate();
   }
 
@@ -71,13 +86,17 @@ module.exports = (
 
   let hour;
   // check for 24-hr time
-  if (dateObj.getHours > 12) {
+  if (dateObj.getHours > 12)
+  {
     hour = Math.floor(dateObj.getHours() / 2);
-  } else {
+  }
+  else
+  {
     hour = dateObj.getHours();
   }
   // if hour is 0 (12:00am), change it to 12
-  if (hour === 0) {
+  if (hour === 0)
+  {
     hour = 12;
   }
 
@@ -86,9 +105,12 @@ module.exports = (
   // set `am` or `pm`
   let periodOfDay;
 
-  if (dateObj.getHours() >= 12) {
+  if (dateObj.getHours() >= 12)
+  {
     periodOfDay = 'pm';
-  } else {
+  }
+  else
+  {
     periodOfDay = 'am';
   }
 

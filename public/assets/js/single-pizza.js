@@ -9,7 +9,8 @@ const $newCommentForm = document.querySelector('#new-comment-form');
 
 let pizzaId;
 
-function printPizza(pizzaData) {
+function printPizza(pizzaData)
+{
   console.log(pizzaData);
 
   pizzaId = pizzaData._id;
@@ -24,14 +25,18 @@ function printPizza(pizzaData) {
     .map(topping => `<span class="col-auto m-2 text-center btn">${topping}</span>`)
     .join('');
 
-  if (comments && comments.length) {
+  if (comments && comments.length)
+  {
     comments.forEach(printComment);
-  } else {
+  }
+  else
+  {
     $commentSection.innerHTML = '<h4 class="bg-dark p-3 rounded">No comments yet!</h4>';
   }
 }
 
-function printComment(comment) {
+function printComment(comment)
+{
   // make div to hold comment and subcomments
   const commentDiv = document.createElement('div');
   commentDiv.classList.add('my-2', 'card', 'p-2', 'w-100', 'text-dark', 'rounded');
@@ -42,7 +47,8 @@ function printComment(comment) {
       <div class="bg-dark ml-3 p-2 rounded" >
         ${
           comment.replies && comment.replies.length
-            ? `<h5>${comment.replies.length} ${
+            ? `<h5>${comment.replies.length}
+            ${
                 comment.replies.length === 1 ? 'Reply' : 'Replies'
               }</h5>
         ${comment.replies.map(printReply).join('')}`
@@ -67,7 +73,8 @@ function printComment(comment) {
   $commentSection.prepend(commentDiv);
 }
 
-function printReply(reply) {
+function printReply(reply)
+{
   return `
   <div class="card p-2 rounded bg-secondary">
     <p>${reply.writtenBy} replied on ${reply.createdAt}:</p>
@@ -76,23 +83,27 @@ function printReply(reply) {
 `;
 }
 
-function handleNewCommentSubmit(event) {
+function handleNewCommentSubmit(event)
+{
   event.preventDefault();
 
   const commentBody = $newCommentForm.querySelector('#comment').value;
   const writtenBy = $newCommentForm.querySelector('#written-by').value;
 
-  if (!commentBody || !writtenBy) {
+  if (!commentBody || !writtenBy)
+  {
     return false;
   }
 
   const formData = { commentBody, writtenBy };
 }
 
-function handleNewReplySubmit(event) {
+function handleNewReplySubmit(event)
+{
   event.preventDefault();
 
-  if (!event.target.matches('.reply-form')) {
+  if (!event.target.matches('.reply-form'))
+  {
     return false;
   }
 
@@ -101,14 +112,16 @@ function handleNewReplySubmit(event) {
   const writtenBy = event.target.querySelector('[name=reply-name]').value;
   const replyBody = event.target.querySelector('[name=reply]').value;
 
-  if (!replyBody || !writtenBy) {
+  if (!replyBody || !writtenBy)
+  {
     return false;
   }
 
   const formData = { writtenBy, replyBody };
 }
 
-$backBtn.addEventListener('click', function() {
+$backBtn.addEventListener('click', function()
+{
   window.history.back();
 });
 
